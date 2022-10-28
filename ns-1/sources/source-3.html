@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ModelTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: ModelTest (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ModelTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package test;
+<i class="no-highlight">2</i>&nbsp;import org.junit.jupiter.api.*;
+<i class="no-highlight">3</i>&nbsp;import src.Location;
+<i class="no-highlight">4</i>&nbsp;import src.Model;
+<i class="no-highlight">5</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+<i class="no-highlight">6</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertNotEquals;
+<i class="no-highlight">7</i>&nbsp;
+<b class="fc"><i class="no-highlight">8</i>&nbsp;class ModelTest {</b>
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    private Model model;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    @BeforeAll
+<i class="no-highlight">13</i>&nbsp;    public static void setupAll(){
+<b class="fc"><i class="no-highlight">14</i>&nbsp;        System.out.println(&quot;Should Print Before All Model Tests&quot;);</b>
+<i class="no-highlight">15</i>&nbsp;    }
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    @BeforeEach
+<i class="no-highlight">18</i>&nbsp;    public void setup(){
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        System.out.println(&quot;Instantiating Model&quot;);</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        model = new Model();</b>
+<i class="no-highlight">21</i>&nbsp;    }
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    @Test
+<i class="no-highlight">24</i>&nbsp;    @DisplayName(&quot;Should Select Model&quot;)
+<i class="no-highlight">25</i>&nbsp;    void shouldSelectModel() {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        Location locationTest = new Location(1, 1);</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        model.select(locationTest);</b>
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    @Test
+<i class="no-highlight">31</i>&nbsp;    @DisplayName(&quot;Should Not Select When Location is Null for Select()&quot;)
+<i class="no-highlight">32</i>&nbsp;    public void shouldThrowRuntimeExceptionWhenLocationIsNullForSelect(){
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        String FailedMessage = &quot;Should Pass Location in Select method&quot;;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        Assertions.assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;           model.select(null);</b>
+<i class="no-highlight">36</i>&nbsp;        },FailedMessage);
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    @Test
+<i class="no-highlight">40</i>&nbsp;    @DisplayName(&quot;Should Get Label&quot;)
+<i class="no-highlight">41</i>&nbsp;    void shouldGetLabel() {
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        Location locationTest = new Location(2, 2);</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        String result = model.getLabel(locationTest);</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;        System.out.println(result);</b>
+<i class="no-highlight">45</i>&nbsp;        //assertFalse(result.isEmpty());
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        assertEquals((result.equals(&quot;&quot;) || result.equals(&quot;X&quot;) || result.equals(&quot;O&quot;)) , true);</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;        Assertions.assertThrows(IllegalStateException.class,()-&gt;{</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;            throw new IllegalStateException(&quot;error message&quot;);</b>
+<i class="no-highlight">49</i>&nbsp;        });
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    @Test
+<i class="no-highlight">53</i>&nbsp;    @DisplayName(&quot;Should Not Select When Location is Null for GetLabel()&quot;)
+<i class="no-highlight">54</i>&nbsp;    public void shouldThrowRuntimeExceptionWhenLocationIsNullForGetLabel(){
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        String FailedMessage = &quot;Should Pass Location in GetLabel method&quot;;</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        Assertions.assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;            model.getLabel(null);</b>
+<i class="no-highlight">58</i>&nbsp;        },FailedMessage);
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;    @Test
+<i class="no-highlight">62</i>&nbsp;    void gameIsOver() {
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        boolean oGame = model.gameIsOver();</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        assertEquals(false,oGame);</b>
+<i class="no-highlight">65</i>&nbsp;    }
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    @Test
+<i class="no-highlight">68</i>&nbsp;    void getWinnerCalled() {
+<i class="no-highlight">69</i>&nbsp;        // create and set mock(s)
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        boolean getWCall  = model.getWinnerCalled();</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        assertEquals(false, getWCall);</b>
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    @Test
+<i class="no-highlight">75</i>&nbsp;    void getWinner() {
+<b class="fc"><i class="no-highlight">76</i>&nbsp;        int getWinner = model.getWinner();</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;        assertNotEquals(1, getWinner);</b>
+<i class="no-highlight">78</i>&nbsp;    }
+<i class="no-highlight">79</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-28 22:37</div>
+</div>
+</body>
+</html>
